@@ -2,9 +2,7 @@
 Pioneer : Exploratory Robot
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 [![Build Status](https://travis-ci.org/Indushekhar/pioneer.svg?branch=master)](https://travis-ci.org/Indushekhar/pioneer)
-
 [![Coverage Status](https://coveralls.io/repos/github/Indushekhar/pioneer/badge.svg?branch=master)](https://coveralls.io/github/Indushekhar/pioneer?branch=master)
 
 ## Project Overview
