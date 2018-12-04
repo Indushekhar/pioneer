@@ -40,34 +40,97 @@
 #include <math.h>
 
 
-Exploration::Exploration() { }
+Exploration::Exploration() {
+  currentVelocity_.linear.x = 0.0;
+  currentVelocity_.linear.y = 0.0;
+  currentVelocity_.linear.z = 0.0;
+  currentVelocity_.angular.x = 0.0;
+  currentVelocity_.angular.y = 0.0;
+  currentVelocity_.angular.z = 0.0;
+  targetVelocity_.linear.x = 0.0;
+  collisionFlag_ = false;
+  stopMotion_ = false;
+  turnFlag_ = false ;
+  velocityChangeFlag_= false;
+  diagnostic_ = true;
+
+}
 
 Exploration::~Exploration()  {}
 
 
+
 void Exploration::startTurnTimer(const ros::TimerEvent& ) {
 
+    turnFlag_= true;
+    ROS_INFO("Time1 called");
 }
 
 void Exploration::stopTurnTimer(const ros::TimerEvent& ) {
 
+    turnFlag_= false;
+    ROS_INFO("Timer2 called");
 }
 
 void Exploration::checkObstacle(const sensor_msgs::LaserScan msg) {
     // Iterate over range values
-
+    collisionFlag_ = false;
+    for (auto i : msg.ranges) {
+     if ( i < 0.8) {
+        collisionFlag_ = true;
+      }
+    }
 }
 
 bool Exploration::checkCollision() {
 
-  return true;
+  return collisionFlag_;
 }
 
 geometry_msgs::Twist  Exploration::explore() {
-   //Initialize velocity
-  // Avoid obstacle
-  // Include behaviour from service calls
+   // ROS_INFO("calling explore method");
+    currentVelocity_.linear.x = 0.00001;
+    currentVelocity_.linear.y = 0.0;
+    currentVelocity_.linear.z = 0.0;
+    currentVelocity_.angular.x = 0.0;
+    currentVelocity_.angular.y = 0.0;
+    currentVelocity_.angular.z = 0.0000001;
 
+
+    if (~stopMotion_)  {
+
+        if (collisionFlag_) {
+            ROS_INFO("Obstacle Detected");
+            currentVelocity_.linear.x = 0.0;
+            currentVelocity_.angular.z = 0.35;
+           // currentVelocity_ = targetVelocity;
+
+        }
+
+        else if (turnFlag_ ) {
+            ROS_INFO("making turn to explore");
+            currentVelocity_.linear.x = 0.0;
+            currentVelocity_.angular.z = 0.25;
+            //currentVelocity_ = targetVelocity_;
+           //ros::Duration(30).sleep();
+
+        }
+
+         else if ( velocityChangeFlag_)
+         {
+            ROS_INFO("changing forward velocity");
+            currentVelocity_.angular.z = 0.0;
+            currentVelocity_.linear.x = targetVelocity_.linear.x;
+           // currentVelocity_ = targetVelocity_;
+        }
+        else {
+            ROS_INFO("moving forward");
+            currentVelocity_.angular.z = 0.0;
+            currentVelocity_.linear.x = 0.3 ;
+            //currentVelocity_ = targetVelocity_;
+        }
+
+    }
 
     return currentVelocity_;
 }
@@ -78,21 +141,30 @@ bool Exploration::motion
     (pioneer::motionService::Request &req,
                        pioneer::motionService::Response &resp) {
   // Toggle pause motion flag:
+  stopMotion_ = req.stop;
+  resp.response = true;
 
-  return true;
+  if (stopMotion_) {
+    ROS_INFO_STREAM("Robot Stopped by the user");
+  } else {
+    ROS_INFO_STREAM("Starting the robot movement");
+  }
+
+  return resp.response;
 }
 
 bool Exploration::velocityChange(pioneer::velocityChangeService::Request &req,
                    pioneer::velocityChangeService::Response &resp) {
 
+    targetVelocity_.linear.x = req.velocity;
+    velocityChangeFlag_ = true ;
+    resp.response = true;
 
-    return true;
+    return resp.response;
 
 }
 
 
 bool Exploration::diagnosticTest() {
-
-
-  return true;
+  return diagnostic_;
 }
