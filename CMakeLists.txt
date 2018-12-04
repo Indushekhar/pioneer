@@ -31,7 +31,7 @@ catkin_package(CATKIN_DEPENDS std_msgs sensor_msgs)
 
 
 
-find_package( OpenCV REQUIRED COMPONENTS core imgproc highgui opencv_imgcodecs )
+find_package( OpenCV REQUIRED COMPONENTS core imgproc highgui )
 include_directories(include ${catkin_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
 
 add_executable(pioneer src/main.cpp src/Robot.cpp  src/Exploration.cpp src/RobotCamera.cpp )
