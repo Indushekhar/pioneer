@@ -46,25 +46,45 @@
 #include <string>
 
 
-RobotCamera::RobotCamera(){}
+RobotCamera::RobotCamera(){
+
+  robotCameraClient_ = nh_.serviceClient < pioneer::captureImageService
+      > ("captureImage");
+
+  diagnostic_ = true;
+}
 
 RobotCamera::~RobotCamera() {}
 
 void RobotCamera::robotCameraCallback(const sensor_msgs::ImageConstPtr& msg) {
-   //Save the image captured when called by captureImage service
+  if ( captureImageFlag_) {
+    cv_bridge::CvImagePtr image_ptr;
+    try {
+      image_ptr = cv_bridge::toCvCopy(msg, "bgr8");
+    } catch (cv_bridge::Exception& e) {
+      ROS_ERROR_STREAM("cv_bridge exception:" << e.what());
+      return;
+    }
+
+    std::ostringstream filename;
+    filename << "pioneerImage_" << ros::WallTime::now() << ".jpg";
+    cv::imwrite(filename.str(), image_ptr->image);
+    ROS_INFO("Saving image %s to ~/.ros/", filename.str().c_str());
+    captureImageFlag_= false;
+  }
 }
 
 
 bool RobotCamera::captureImage(pioneer::captureImageService::Request &req,
                  pioneer::captureImageService::Response &resp) {
 
+  captureImageFlag_ = req.flag;
+  resp.response = true;
 
-
-  return true;
+  return resp.response;
 }
 
 
 bool RobotCamera::diagnosticTest() {
-
-  return true;
+  return diagnostic_;
 }
