@@ -40,7 +40,7 @@ target_link_libraries(pioneer ${catkin_LIBRARIES} ${OpenCV_LIBS})
 
 if(CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
   add_rostest_gtest(pioneerTest test/pioneer_test.launch test/main.cpp test/ExplorationTest.cpp test/RobotCameraTest.cpp src/Robot.cpp  src/Exploration.cpp src/RobotCamera.cpp )
   target_link_libraries(pioneerTest ${catkin_LIBRARIES} ${OpenCV_LIBS})

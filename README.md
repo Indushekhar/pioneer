@@ -5,6 +5,7 @@ Pioneer : Exploratory Robot
 [![Build Status](https://travis-ci.org/Indushekhar/pioneer.svg?branch=master)](https://travis-ci.org/Indushekhar/pioneer)
 [![Coverage Status](https://coveralls.io/repos/github/Indushekhar/pioneer/badge.svg?branch=master)](https://coveralls.io/github/Indushekhar/pioneer?branch=master)
 
+
 ## Project Overview
 
 The objective of this project is to design a software stack which will enable the Turtlebot2 robot
@@ -24,6 +25,125 @@ the occupancy map which can be used for indoor navigation purposes.
 
  ![Test Image 1](https://github.com/Indushekhar/pioneer/blob/master/results/GazeboWorldV1.png) 
 
+
+## About the Developers
+
+I am Indushekhar Singh. I am currently pursing Masters in Robotics at University of Maryland - College Park. I hold a Bachelors degree in Electrial & Electronics Engineering from, NIT Jamshedpur India. Along with that I brings 3 years of work experience in the area of Industrial Automation. I am also comfortable working in MATLAB and Python. I have done few projects in these two languages too.
+
+
+## Dependencies
+
+To run the program you need to have the following dependencies on your system:
+
+1. Ubuntu (Xenial) 
+
+2. ROS Kinetic Kame
+
+3. Gazebo 7.x (part of ros-kinetic-desktop-full package)
+
+4. Turtlebot simulation package
+
+5. Gmapping
+
+6. map_server
+
+7. image_view
+
+```
+To install ROS, follow the instructions on this [link](http://wiki.ros.org/kinetic/Installation)
+
+Don't forget to setup the ROS environment by adding the following line in your .bashrc :
+
+```
+$ source /opt/ros/kinetic/setup.bash
+
+```
+
+To install the turtlebot packages, run the following after installing ROS Kinetic on your ubuntu 16.04.
+
+```
+sudo apt-get install ros-kinetic-turtlebot-*
+
+```
+
+To install gmapping, In a terminal run :
+
+```
+sudo apt-get install ros-kinetic-slam-gmapping
+
+```
+
+To install map_server, In a terminal run:
+
+```
+sudo apt-get install ros-kinetic-map-server
+
+```
+
+To install image_view, run :
+
+```
+sudo apt-get install ros-indigo-image-view
+
+```
+
+
+## Build Instructions 
+
+Following the environment setup, next step is to create the workspace.
+
+```
+$ cd <path where workspace needs to be created>
+$ mkdir -p <name of workspace>
+$ cd <workspace>
+<workspace>$ catkin_make
+
+```
+
+Now, for building the main branch
+
+```
+<home>$ cd <workspace>/src
+<workspace>/src$ git clone --recursive https://github.com/Indushekhar/pioneer
+<workspace>/src$ cd ..
+<workspace>$ catkin_make 
+
+```
+
+Just like the path of the ROS was sourced in .bashrc file, same needs to be done for the workspace by writing 
+
+```
+source <path to workspace>/devel/setup.bash
+```
+in the .bashrc. This will avoid the needs of sourcing everytime we run the package.
+
+
+## Run Instructions - Coming soon...
+
+
+## Services for the user
+
+Along with the core exploration task, the system is capable of supporting additional user demands if required.
+
+### Image Capture Service
+
+The user any time during the simulation can capture an image and save on their disk.
+
+## Testing 
+
+The unit tests for this package can be ran using the following commands. After cloning the repository, navigate to the root of the workspace and run the following command:
+
+```
+$ catkin_make run_tests 
+
+```
+
+It can also be run by using launch file :
+
+```
+$ rostest pioneer pioneer_test.launch
+
+```
 
 ## Solo Iterative Process and Sprint Planning
 
