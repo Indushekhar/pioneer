@@ -49,7 +49,7 @@ To run the program you need to have the following dependencies on your system:
 
 7. image_view
 
-```
+
 To install ROS, follow the instructions on this [link](http://wiki.ros.org/kinetic/Installation)
 
 Don't forget to setup the ROS environment by adding the following line in your .bashrc :
