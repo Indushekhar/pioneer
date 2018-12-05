@@ -129,6 +129,17 @@ Along with the core exploration task, the system is capable of supporting additi
 
 The user any time during the simulation can capture an image and save on their disk.
 
+
+### Veclocity Chage Service
+
+User can any time incresese/decrease the linear velocity of the robot.
+
+
+### Start/Stop Service
+
+User can any time start/stop the robot in simulation.
+
+
 ## Testing 
 
 The unit tests for this package can be ran using the following commands. After cloning the repository, navigate to the root of the workspace and run the following command:
