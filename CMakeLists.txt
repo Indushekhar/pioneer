@@ -38,10 +38,11 @@ add_executable(pioneer src/main.cpp src/Robot.cpp  src/Exploration.cpp src/Robot
 target_link_libraries(pioneer ${catkin_LIBRARIES} ${OpenCV_LIBS})
 
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
+
 if(CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
   add_rostest_gtest(pioneerTest test/pioneer_test.launch test/main.cpp test/ExplorationTest.cpp test/RobotCameraTest.cpp src/Robot.cpp  src/Exploration.cpp src/RobotCamera.cpp )
   target_link_libraries(pioneerTest ${catkin_LIBRARIES} ${OpenCV_LIBS})
   add_dependencies(

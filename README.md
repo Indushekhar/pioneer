@@ -83,7 +83,7 @@ sudo apt-get install ros-kinetic-map-server
 To install image_view, run :
 
 ```
-sudo apt-get install ros-indigo-image-view
+sudo apt-get install ros-kinetic-image-view
 
 ```
 
