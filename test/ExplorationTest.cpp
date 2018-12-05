@@ -110,10 +110,3 @@ TEST(TESTSuite, collisionTest) {
 
 
 
-int main(int argc, char** argv) {
-  ros::init(argc, argv, "pioneerTest");
-
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
-

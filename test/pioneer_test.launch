@@ -1,0 +1,5 @@
+ <launch>
+ <node name="pioneer" pkg="pioneer" type="pioneer" output="screen"/>
+     <test pkg="pioneer" test-name="pioneerTest" type="pioneerTest"/>
+   
+ </launch>
