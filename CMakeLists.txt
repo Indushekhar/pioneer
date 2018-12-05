@@ -34,7 +34,7 @@ catkin_package()
 find_package( OpenCV REQUIRED COMPONENTS core imgproc highgui )
 include_directories(include ${catkin_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
 
-add_executable(pioneer src/Robot.cpp  src/Exploration.cpp src/RobotCamera.cpp )
+add_executable(pioneer src/main.cpp src/Robot.cpp  src/Exploration.cpp src/RobotCamera.cpp )
 target_link_libraries(pioneer ${catkin_LIBRARIES} ${OpenCV_LIBS})
 
 
