@@ -34,7 +34,6 @@
 */
 
 
-
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
@@ -42,13 +41,41 @@
 
 
 
-Robot::Robot()  {}
+Robot::Robot()  {
+
+    velocityPub_ = n_.advertise<geometry_msgs::Twist
+      > ("/mobile_base/commands/velocity", 100);
+
+    laserScanSub_ = n_.subscribe <sensor_msgs::LaserScan
+      > ("/scan", 1000, &Exploration::checkObstacle,
+                     &exploration_);
+
+    cameraSub_ = n_.subscribe <sensor_msgs::Image> ("/camera/rgb/image_raw", 500,
+                                              &RobotCamera::robotCameraCallback, &robotCamera_);
+
+    motionServer_ = n_.advertiseService("motionService",
+                                          &Exploration::motion,
+                                         &exploration_);
+
+    startTurnTimer_ = n_.createTimer(ros::Duration(50),
+                              &Exploration::startTurnTimer,
+                        &exploration_);
+
+    stopTurnTimer_ = n_.createTimer(ros::Duration(53),
+                              &Exploration::stopTurnTimer,
+                        &exploration_);
+    velocityChangeServer_ = n_.advertiseService("velocityChangeService",
+                                          &Exploration::velocityChange,
+                                         &exploration_);
+    captureImageServer_ =  n_.advertiseService("captureImageService", &RobotCamera::captureImage,
+                                       &robotCamera_);
+}
 
 Robot::~Robot() {}
 
 void Robot::run() {
 
-  // Run the robot to explore using explore() method of Exploration class
+    velocityPub_.publish(exploration_.explore()) ;
 }
 
 
