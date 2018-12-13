@@ -40,22 +40,25 @@
 
 /*
 * @brief Test for the diagnostic
+* @param  none
+* @return none
 */
 
-TEST(TESTSuite, cameraDiagnosticTest) {
+TEST(RobotCamera, cameraDiagnosticTest) {
   RobotCamera robotCamObject_;
   EXPECT_EQ(robotCamObject_.diagnosticTest() , true);
 }
 
 /*
 * @brief Test whether captureImageService is ready to call
+* @param  none
+* @return none
 */
 
 
-TEST(TESTSuite, captureImageServiceTest) {
+TEST(RobotCamera, captureImageServiceTest) {
   // Create node handle
   ros::NodeHandle nh;
-  // Create client for the change_text service
   ros::ServiceClient client =
       nh.serviceClient<pioneer::captureImageService>("captureImageService");
   // Check if the service exists
@@ -64,3 +67,20 @@ TEST(TESTSuite, captureImageServiceTest) {
 }
 
 
+/*
+* @brief check captureImageService client in RobotCamera class
+* @param  none
+* @return none
+*/
+/*
+
+TEST(RobotCamera, robotCameraClientTest) {
+  // Create node handle
+  ros::NodeHandle nh;
+  ros::ServiceServer imageService =  nh.advertiseService<pioneer::captureImageService>("captureImageService");
+  // Check if the service exists
+  bool exists(imageService.waitForExistence(ros::Duration(10)));
+  EXPECT_TRUE(exists);
+}
+
+*/

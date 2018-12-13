@@ -37,20 +37,25 @@
 #include <gtest/gtest.h>
 #include <Exploration.hpp>
 
+
 /*
 * @brief Test for the diagnostic
+* @param  none
+* @return none
 */
 
-TEST(TESTSuite, diagnosticTest) {
+TEST(ExplorationTest_, diagnosticTest) {
   Exploration explorationTest_;
   EXPECT_EQ(explorationTest_.diagnosticTest() , true);
 }
 
 /*
 * @brief Test whether motionService is ready to call
+* @param  none
+* @return none
 */
 
-TEST(TESTSuite, motionServiceTest) {
+TEST(ExplorationTest_, motionServiceTest) {
   ros::NodeHandle nh;
   ros::ServiceClient client =
       nh.serviceClient<pioneer::motionService>("motionService");
@@ -58,12 +63,27 @@ TEST(TESTSuite, motionServiceTest) {
   EXPECT_TRUE(exists);
 }
 
+/*
+* @brief verify motionService response in Exploration class
+* @param  none
+* @return none
+*/
+
+TEST(ExplorationTest_ , motionServiceResponse) {
+  Exploration explorationTest_;
+  pioneer::motionService srv;
+  srv.request.stop = true;
+  EXPECT_TRUE(explorationTest_.motion(srv.request, srv.response));
+}
+
 
 /*
 * @brief Test whether velocityChangeService is ready to call
+* @param  none
+* @return none
 */
 
-TEST(TESTSuite, velocityChangeServiceTest) {
+TEST(ExplorationTest_, velocityChangeServiceTest) {
   ros::NodeHandle nh;
 
   ros::ServiceClient client =
@@ -72,12 +92,28 @@ TEST(TESTSuite, velocityChangeServiceTest) {
   EXPECT_TRUE(exists);
 }
 
+/*
+* @brief verify veclocityChangeService response in Exploration class
+* @param  none
+* @return none
+*/
+
+TEST(ExplorationTest_ , velocityChangeServiceResponse) {
+  Exploration explorationTest_;
+  pioneer::velocityChangeService srv;
+  srv.request.velocity= 0.1;
+  EXPECT_TRUE(explorationTest_.velocityChange(srv.request, srv.response));
+}
+
+
 
 /*
 * @brief Test if checkObstacle method is working correctly.
+* @param  none
+* @return none
 */
 
-TEST(TESTSuite, collisionTest) {
+TEST(ExplorationTest_, collisionTest) {
 
   std::vector<float> range_array(100, 0.0);
 
@@ -107,6 +143,5 @@ TEST(TESTSuite, collisionTest) {
   EXPECT_EQ(pioneerExplore_.checkCollision(), false);
 
 }
-
 
 
