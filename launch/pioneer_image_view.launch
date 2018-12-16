@@ -10,6 +10,9 @@
    <include file="$(find turtlebot_gazebo)/launch/gmapping_demo.launch"/>
    <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch"/>
    <node name="pioneer" pkg="pioneer" type="pioneer" output="screen" launch-prefix="gnome-terminal --command"/>
+   <node name="image_view" pkg="image_view" type="image_view">
+		<remap from="image" to="camera/rgb/image_raw" />
+   </node>
    <node pkg="rosbag" name="recorder_bag" type="record" args="--all --output-name=$(find pioneer)/results/pioneer.bag -x /camera/(.*) --duration=$(arg duration)" if="$(arg record)"/>
 
 </launch>
