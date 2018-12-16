@@ -74,7 +74,7 @@ void Exploration::checkObstacle(const sensor_msgs::LaserScan msg) {
     // Iterate over range values
     collisionFlag_ = false;
     for (auto i : msg.ranges) {
-     if ( i < 1.0 ) {
+     if ( i < 0.6 ) {
         collisionFlag_ = true;
       }
     }
@@ -94,14 +94,19 @@ geometry_msgs::Twist  Exploration::explore() {
 
     // start if stopMotion_ is true
     if ( stopMotion_ == false )  {
-        if (collisionFlag_) {
+        if (collisionFlag_ && ~turnFlag_) {
             ROS_INFO("Obstacle Detected");
+            std::random_device rand_;
+            std::mt19937 rng(rand_());
+            std::uniform_int_distribution<int> dis(15,65);
+            float randAngle = dis(rng);
             currentVelocity_.linear.x = 0.0;
-            currentVelocity_.angular.z = 0.25;
+           // currentVelocity_.angular.z = 0.25;
+            currentVelocity_.angular.z = randAngle * (3.14 / 180);
         } else if ( turnFlag_ ) {
             ROS_INFO("making turn to explore");
             currentVelocity_.linear.x = 0.0;
-            currentVelocity_.angular.z = 0.2;
+            currentVelocity_.angular.z = 1.0;
         } else if ( velocityChangeFlag_ ) {
             ROS_INFO("changing forward velocity");
             currentVelocity_.angular.z = 0.0;
@@ -109,7 +114,7 @@ geometry_msgs::Twist  Exploration::explore() {
         } else {
             ROS_INFO("moving forward");
             currentVelocity_.angular.z = 0.0;
-            currentVelocity_.linear.x = 0.25;
+            currentVelocity_.linear.x = 0.3;
         }
     }
 

@@ -4,7 +4,7 @@
    <arg name="duration" default="45"/>
 
    <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
-	<arg name="world_file" value="$(find pioneer)/world/pioneerv4.world"/>
+	<arg name="world_file" value="$(find pioneer)/world/pioneer.world"/>
    </include>
 
    <include file="$(find turtlebot_gazebo)/launch/gmapping_demo.launch"/>

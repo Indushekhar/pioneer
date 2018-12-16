@@ -66,13 +66,13 @@ Robot::Robot()  {
     // create timer instance of duration 45 seconds
     // which triggers the in place turn action
 
-    startTurnTimer_ = n_.createTimer(ros::Duration(45),
+    startTurnTimer_ = n_.createTimer(ros::Duration(100),
                               &Exploration::startTurnTimer,
                         &exploration_);
     // create second timer of 48 seconds
     // which will be used to stop turn action
 
-    stopTurnTimer_ = n_.createTimer(ros::Duration(48),
+    stopTurnTimer_ = n_.createTimer(ros::Duration(102),
                               &Exploration::stopTurnTimer,
                         &exploration_);
 

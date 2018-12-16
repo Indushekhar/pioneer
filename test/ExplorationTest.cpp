@@ -170,11 +170,11 @@ TEST(ExplorationTest_, exploreTest) {
 
 TEST(ExplorationTest_ , timerTest) {
   Exploration explorationTest_;
-  ros::Duration(45).sleep();
+  ros::Duration(100).sleep();
   geometry_msgs::Twist velocity = explorationTest_.explore();
   if (explorationTest_.turnStatus()) {
     EXPECT_EQ(velocity.linear.x, 0.0);
-    EXPECT_EQ(velocity.angular.z, 0.3);
+    EXPECT_EQ(velocity.angular.z, 1.0);
   }
 }
 
