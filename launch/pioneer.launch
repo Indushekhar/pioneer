@@ -1,0 +1,17 @@
+<launch>
+
+   <arg name="record" default="false"/>
+   <arg name="duration" default="45"/>
+
+   <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
+	<arg name="world_file" value="$(find pioneer)/world/pioneerv4.world"/>
+   </include>
+
+   <include file="$(find turtlebot_gazebo)/launch/gmapping_demo.launch"/>
+   <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch"/>
+   <node name="pioneer" pkg="pioneer" type="pioneer" output="screen"/>
+   <node pkg="rosbag" name="recorder_bag" type="record" args="--all --output-name=$(find pioneer)/results/pioneer.bag -x /camera/(.*) --duration=$(arg duration)" if="$(arg record)"/>
+
+</launch>
+
+
