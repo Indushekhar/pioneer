@@ -1,5 +1,4 @@
  <launch>
  <node name="pioneer" pkg="pioneer" type="pioneer" output="screen"/>
-     <test pkg="pioneer" test-name="pioneerTest" type="pioneerTest"/>
-   
+     <test pkg="pioneer" test-name="pioneerTest" type="pioneerTest" time-limit="90.0"/>
  </launch>

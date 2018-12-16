@@ -57,7 +57,8 @@ TEST(RobotTest, velocityPublisherTest) {
   ros::NodeHandle nh;
 
   // Create a subscriber
-  auto velocitySub_ = nh.subscribe("/mobile_base/commands/velocity", 1, callBack);
+  auto velocitySub_ = nh.subscribe("/mobile_base/commands/velocity",
+                         1, callBack);
   // Waot for some time
   ros::WallDuration(1).sleep();
   // Spine in callbacks

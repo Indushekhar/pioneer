@@ -35,7 +35,7 @@
 
 #include <ros/ros.h>
 #include <gtest/gtest.h>
-#include <Exploration.hpp>
+#include "../include/Exploration.hpp"
 
 
 /*
@@ -64,16 +64,19 @@ TEST(ExplorationTest_, motionServiceTest) {
 }
 
 /*
-* @brief verify motionService response in Exploration class
+* @brief verify motionService in Exploration class
+*        Test whether robot is starting/stopping by service
 * @param  none
 * @return none
 */
 
-TEST(ExplorationTest_ , motionServiceResponse) {
+TEST(ExplorationTest_ , motionServiceResponseTest) {
   Exploration explorationTest_;
   pioneer::motionService srv;
   srv.request.stop = true;
   EXPECT_TRUE(explorationTest_.motion(srv.request, srv.response));
+  geometry_msgs::Twist velocity = explorationTest_.explore();
+  EXPECT_EQ(velocity.linear.x, 0.0);
 }
 
 
@@ -85,7 +88,6 @@ TEST(ExplorationTest_ , motionServiceResponse) {
 
 TEST(ExplorationTest_, velocityChangeServiceTest) {
   ros::NodeHandle nh;
-
   ros::ServiceClient client =
       nh.serviceClient<pioneer::velocityChangeService>("velocityChangeService");
   bool exists(client.waitForExistence(ros::Duration(10)));
@@ -98,14 +100,14 @@ TEST(ExplorationTest_, velocityChangeServiceTest) {
 * @return none
 */
 
-TEST(ExplorationTest_ , velocityChangeServiceResponse) {
+TEST(ExplorationTest_ , velChangeServiceRespTest) {
   Exploration explorationTest_;
   pioneer::velocityChangeService srv;
-  srv.request.velocity= 0.1;
+  srv.request.velocity = 0.1;
   EXPECT_TRUE(explorationTest_.velocityChange(srv.request, srv.response));
+  geometry_msgs::Twist velocity = explorationTest_.explore();
+  EXPECT_EQ(velocity.linear.x, 0.1);
 }
-
-
 
 /*
 * @brief Test if checkObstacle method is working correctly.
@@ -114,9 +116,7 @@ TEST(ExplorationTest_ , velocityChangeServiceResponse) {
 */
 
 TEST(ExplorationTest_, collisionTest) {
-
   std::vector<float> range_array(100, 0.0);
-
   sensor_msgs::LaserScan msg;
   msg.angle_min = 0;
   msg.angle_max = 0;
@@ -127,21 +127,54 @@ TEST(ExplorationTest_, collisionTest) {
   msg.range_max = 0;
   msg.ranges = range_array;
   msg.intensities.push_back(0);
-
   Exploration pioneerExplore_;
-
   pioneerExplore_.checkObstacle(msg);
-
-  EXPECT_EQ( pioneerExplore_.checkCollision(), true);
-
+  EXPECT_EQ(pioneerExplore_.checkCollision(), true);
   std::vector<float> range_array_(100, 4.0);
-
   msg.ranges = range_array_;
-
   pioneerExplore_.checkObstacle(msg);
-
   EXPECT_EQ(pioneerExplore_.checkCollision(), false);
-
 }
 
+/*
+* @brief Test if explore method set correct velocity
+*        when obstacle is near
+* @param  none
+* @return none
+*/
+
+TEST(ExplorationTest_, exploreTest) {
+  Exploration explorationTest_;
+  std::vector<float> range_array(100, 0.0);
+  sensor_msgs::LaserScan msg;
+  msg.angle_min = 0;
+  msg.angle_max = 0;
+  msg.angle_increment = 1;
+  msg.time_increment = 0;
+  msg.scan_time = 0;
+  msg.range_min = 0;
+  msg.range_max = 0;
+  msg.ranges = range_array;
+  msg.intensities.push_back(0);
+  explorationTest_.checkObstacle(msg);
+  geometry_msgs::Twist velocity = explorationTest_.explore();
+  EXPECT_EQ(velocity.linear.x, 0.0);
+}
+
+/*
+* @brief Test if explore method set correct velocity
+*        when start turn timer is called.
+* @param  none
+* @return none
+*/
+
+TEST(ExplorationTest_ , timerTest) {
+  Exploration explorationTest_;
+  ros::Duration(45).sleep();
+  geometry_msgs::Twist velocity = explorationTest_.explore();
+  if (explorationTest_.turnStatus()) {
+    EXPECT_EQ(velocity.linear.x, 0.0);
+    EXPECT_EQ(velocity.angular.z, 0.3);
+  }
+}
 

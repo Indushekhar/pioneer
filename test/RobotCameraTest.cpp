@@ -35,7 +35,8 @@
 
 #include <ros/ros.h>
 #include <gtest/gtest.h>
-#include <RobotCamera.hpp>
+#include "../include/RobotCamera.hpp"
+
 
 
 /*
@@ -59,6 +60,8 @@ TEST(RobotCamera, cameraDiagnosticTest) {
 TEST(RobotCamera, captureImageServiceTest) {
   // Create node handle
   ros::NodeHandle nh;
+  RobotCamera robotCamObject_;
+
   ros::ServiceClient client =
       nh.serviceClient<pioneer::captureImageService>("captureImageService");
   // Check if the service exists
@@ -66,21 +69,18 @@ TEST(RobotCamera, captureImageServiceTest) {
   EXPECT_TRUE(exists);
 }
 
-
 /*
-* @brief check captureImageService client in RobotCamera class
+* @brief Test captureImageService response
 * @param  none
 * @return none
 */
-/*
 
-TEST(RobotCamera, robotCameraClientTest) {
-  // Create node handle
+
+TEST(RobotCamera , capImgServiceResTest) {
+  RobotCamera robotCamObject_;
   ros::NodeHandle nh;
-  ros::ServiceServer imageService =  nh.advertiseService<pioneer::captureImageService>("captureImageService");
-  // Check if the service exists
-  bool exists(imageService.waitForExistence(ros::Duration(10)));
-  EXPECT_TRUE(exists);
+  pioneer::captureImageService srv;
+  srv.request.flag = true;
+  EXPECT_TRUE(robotCamObject_.captureImage(srv.request, srv.response));
 }
 
-*/
