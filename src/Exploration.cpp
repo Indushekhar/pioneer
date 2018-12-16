@@ -98,7 +98,7 @@ geometry_msgs::Twist  Exploration::explore() {
             ROS_INFO("Obstacle Detected");
             std::random_device rand_;
             std::mt19937 rng(rand_());
-            std::uniform_int_distribution<int> dis(15,65);
+            std::uniform_int_distribution<int> dis(15, 65);
             float randAngle = dis(rng);
             currentVelocity_.linear.x = 0.0;
            // currentVelocity_.angular.z = 0.25;
