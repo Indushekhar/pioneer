@@ -1,0 +1,20 @@
+./src/Exploration.cpp:122:  Is this a non-const reference? If so, make const or use a pointer: pioneer::motionService::Request &req  [runtime/references] [2]
+./src/Exploration.cpp:123:  Is this a non-const reference? If so, make const or use a pointer: pioneer::motionService::Response &resp  [runtime/references] [2]
+Done processing ./src/Exploration.cpp
+Done processing ./src/main.cpp
+Done processing ./src/Robot.cpp
+Done processing ./src/RobotCamera.cpp
+Done processing ./test/ExplorationTest.cpp
+Done processing ./test/RobotTest.cpp
+Done processing ./test/main.cpp
+Done processing ./test/RobotCameraTest.cpp
+./include/RobotCamera.hpp:76:  Is this a non-const reference? If so, make const or use a pointer: pioneer::captureImageService::Request &req  [runtime/references] [2]
+./include/RobotCamera.hpp:77:  Is this a non-const reference? If so, make const or use a pointer: pioneer::captureImageService::Response &resp  [runtime/references] [2]
+Done processing ./include/RobotCamera.hpp
+./include/Exploration.hpp:102:  Is this a non-const reference? If so, make const or use a pointer: pioneer::velocityChangeService::Request &req  [runtime/references] [2]
+./include/Exploration.hpp:103:  Is this a non-const reference? If so, make const or use a pointer: pioneer::velocityChangeService::Response &resp  [runtime/references] [2]
+./include/Exploration.hpp:112:  Is this a non-const reference? If so, make const or use a pointer: pioneer::motionService::Request &req  [runtime/references] [2]
+./include/Exploration.hpp:113:  Is this a non-const reference? If so, make const or use a pointer: pioneer::motionService::Response &resp  [runtime/references] [2]
+Done processing ./include/Exploration.hpp
+Done processing ./include/Robot.hpp
+Total errors found: 8
