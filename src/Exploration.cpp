@@ -107,7 +107,7 @@ geometry_msgs::Twist  Exploration::explore() {
             ROS_INFO("making turn to explore");
             currentVelocity_.linear.x = 0.0;
             currentVelocity_.angular.z = 1.0;
-        } else if ( velocityChangeFlag_ ) {
+        } else if ( velocityChangeFlag_ && ~collisionFlag_ ) {
             ROS_INFO("changing forward velocity");
             currentVelocity_.angular.z = 0.0;
             currentVelocity_.linear.x = targetVelocity_.linear.x;
