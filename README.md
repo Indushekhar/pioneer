@@ -118,7 +118,37 @@ source <path to workspace>/devel/setup.bash
 in the .bashrc. This will avoid the needs of sourcing everytime we run the package.
 
 
-## Run Instructions - Coming soon...
+## Running the System demo 
+
+To run the system demo please follow the instruction given in this section. Open a terminal and launch a file using given below:
+
+```
+$ roslaunch pioneer pioneer.launch
+
+```
+The command given above will spwan the robot in a custom gazebo world and launch the rviz plugin. It will also start gmapping node which will be used to map the environment.
+
+Now robot will start moving the gazebo simulation.
+
+### Running the demo with image_view
+
+If you want the see the camera feedback in real time, run the following launch file instead :
+
+```
+$ roslaunch pioneer pioneer_image_view.launch
+
+```
+This is will open a image_view window where you can see the real time camera feedback.
+
+## Saving the map
+
+You can see the map created in real time in rviz window. Once the exploration is complete, run the following command to save the map :
+
+```
+<path where map is to be saved> $ rosrun map_server map_saver -f <map_name>
+
+```
+
 
 
 ## Services for the user
@@ -127,18 +157,68 @@ Along with the core exploration task, the system is capable of supporting additi
 
 ### Image Capture Service
 
-The user any time during the simulation can capture an image and save on their disk.
+The user any time during the simulation can capture an image and save on their disk using captureImageService. To run the service run following command on a new
+terminal :
+
+```
+$ cd ~/catkin_ws/
+$ source devel/setup.bash
+$ rosservice call /captureImageService true
+
+```
+The files will get saved in ./ros folder. To view the files. In a new terminal:
+
+```
+gnome-open ~/.ros
+
+```
+If you do not have gnome-open installed. In a terminal run :
+
+```
+sudo apt install libgnome2-bin
+
+```
 
 
-### Veclocity Chage Service
+### Veclocity Change Service
 
-User can any time incresese/decrease the linear velocity of the robot.
+User can any time incresese/decrease the linear velocity of the robot. To increase or decrease the velocity run following command on a new
+terminal :
 
+```
+$ cd ~/catkin_ws/
+$ source devel/setup.bash
+$ rosservice call /velocityChangeService <value>
+
+```
+for example , setting the velocity to 0.1 m/s, run :
+
+```
+rosservice call /velocityChangeService 0.1
+
+```
 
 ### Start/Stop Service
 
-User can any time start/stop the robot in simulation.
+User can any time start/stop the robot in simulation using motionService. To stop the robot if already moving, run following command on a new
+terminal :
 
+```
+$ cd ~/catkin_ws/
+$ source devel/setup.bash
+$ rosservice call /motionService true
+
+```
+
+If the robot is in stop position, to move the robot ,  run following command on a new
+terminal :
+
+```
+$ cd ~/catkin_ws/
+$ source devel/setup.bash
+$ rosservice call /motionService false
+
+```
 
 ## Testing 
 
