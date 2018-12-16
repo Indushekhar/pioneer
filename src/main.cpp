@@ -37,26 +37,25 @@
 
 #include <stdlib.h>
 #include <ros/ros.h>
-#include <../include/Robot.hpp>
+#include "Robot.hpp"
+
+/**
+ *   @brief  pioneer system  entrypoint
+ *   @param  number of arguments
+ *   @param  argument character array
+ *   @return integer 0 upon exit success
+*/
 
 int main(int argc, char **argv) {
-
   ros::init(argc, argv, "pioneer");
-
   ros::NodeHandle n;
-
   ros::Rate loop_rate(10);
   Robot pioneerBot;
-
   while (ros::ok()) {
-
     pioneerBot.run();
-
     ros::spinOnce();
-
     // Sleep for the remaining time until we hit our 10 Hz rate
     loop_rate.sleep();
   }
-
   return 0;
 }

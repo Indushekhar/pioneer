@@ -37,45 +37,59 @@
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
-#include <../include/Robot.hpp>
-
+#include "Robot.hpp"
 
 
 Robot::Robot()  {
+    // publish on topic /mobile_base/commands/velocity
+    // to move the robot
 
     velocityPub_ = n_.advertise<geometry_msgs::Twist
       > ("/mobile_base/commands/velocity", 100);
 
+    // subscribe to /scan topic to get laser scan data
     laserScanSub_ = n_.subscribe <sensor_msgs::LaserScan
       > ("/scan", 1000, &Exploration::checkObstacle,
                      &exploration_);
+    // subscribe to /camera/rgb/image_raw topic
+    // to get image data from the robot camera
 
-    cameraSub_ = n_.subscribe <sensor_msgs::Image> ("/camera/rgb/image_raw", 500,
-                                              &RobotCamera::robotCameraCallback, &robotCamera_);
+    cameraSub_ = n_.subscribe <sensor_msgs::Image>
+                   ("/camera/rgb/image_raw", 500,
+                    &RobotCamera::robotCameraCallback, &robotCamera_);
+
+    // publish the motionService to be called by client
 
     motionServer_ = n_.advertiseService("motionService",
                                           &Exploration::motion,
                                          &exploration_);
+    // create timer instance of duration 45 seconds
+    // which triggers the in place turn action
 
-    startTurnTimer_ = n_.createTimer(ros::Duration(50),
+    startTurnTimer_ = n_.createTimer(ros::Duration(45),
                               &Exploration::startTurnTimer,
                         &exploration_);
+    // create second timer of 48 seconds
+    // which will be used to stop turn action
 
-    stopTurnTimer_ = n_.createTimer(ros::Duration(53),
+    stopTurnTimer_ = n_.createTimer(ros::Duration(48),
                               &Exploration::stopTurnTimer,
                         &exploration_);
+
+
+    // publish the velocityChangeService to be called by client
+
     velocityChangeServer_ = n_.advertiseService("velocityChangeService",
                                           &Exploration::velocityChange,
                                          &exploration_);
-    captureImageServer_ =  n_.advertiseService("captureImageService", &RobotCamera::captureImage,
-                                       &robotCamera_);
+    captureImageServer_ =  n_.advertiseService("captureImageService",
+                      &RobotCamera::captureImage, &robotCamera_);
 }
 
 Robot::~Robot() {}
 
 void Robot::run() {
-
-    velocityPub_.publish(exploration_.explore()) ;
+    velocityPub_.publish(exploration_.explore());
 }
 
 

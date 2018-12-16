@@ -32,15 +32,16 @@
 * @copyright MIT License (c) 2018 Indushekhar Singh
 */
 
-#include <stdlib.h>
+
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
-#include <stdint.h>
-#include <../include/Exploration.hpp>
-#include <math.h>
+#include "sensor_msgs/LaserScan.h"
+#include "Exploration.hpp"
+
 
 
 Exploration::Exploration() {
+  // Initialize robot velocities
   currentVelocity_.linear.x = 0.0;
   currentVelocity_.linear.y = 0.0;
   currentVelocity_.linear.z = 0.0;
@@ -50,10 +51,9 @@ Exploration::Exploration() {
   targetVelocity_.linear.x = 0.0;
   collisionFlag_ = false;
   stopMotion_ = false;
-  turnFlag_ = false ;
-  velocityChangeFlag_= false;
+  turnFlag_ = false;
+  velocityChangeFlag_ = false;
   diagnostic_ = true;
-
 }
 
 Exploration::~Exploration()  {}
@@ -61,14 +61,12 @@ Exploration::~Exploration()  {}
 
 
 void Exploration::startTurnTimer(const ros::TimerEvent& ) {
-
-    turnFlag_= true;
-    ROS_INFO("Time1 called");
+    turnFlag_ = true;
+    ROS_INFO("Timer1 called");
 }
 
 void Exploration::stopTurnTimer(const ros::TimerEvent& ) {
-
-    turnFlag_= false;
+    turnFlag_ = false;
     ROS_INFO("Timer2 called");
 }
 
@@ -76,60 +74,43 @@ void Exploration::checkObstacle(const sensor_msgs::LaserScan msg) {
     // Iterate over range values
     collisionFlag_ = false;
     for (auto i : msg.ranges) {
-     if ( i < 0.8) {
+     if ( i < 1.0 ) {
         collisionFlag_ = true;
       }
     }
 }
 
 bool Exploration::checkCollision() {
-
   return collisionFlag_;
 }
 
 geometry_msgs::Twist  Exploration::explore() {
-   // ROS_INFO("calling explore method");
-    currentVelocity_.linear.x = 0.00001;
+    currentVelocity_.linear.x = 0.0;
     currentVelocity_.linear.y = 0.0;
     currentVelocity_.linear.z = 0.0;
     currentVelocity_.angular.x = 0.0;
     currentVelocity_.angular.y = 0.0;
-    currentVelocity_.angular.z = 0.0000001;
+    currentVelocity_.angular.z = 0.0;
 
-
-    if (~stopMotion_)  {
-
+    // start if stopMotion_ is true
+    if ( stopMotion_ == false )  {
         if (collisionFlag_) {
             ROS_INFO("Obstacle Detected");
             currentVelocity_.linear.x = 0.0;
-            currentVelocity_.angular.z = 0.35;
-           // currentVelocity_ = targetVelocity;
-
-        }
-
-        else if (turnFlag_ ) {
+            currentVelocity_.angular.z = 0.25;
+        } else if ( turnFlag_ ) {
             ROS_INFO("making turn to explore");
             currentVelocity_.linear.x = 0.0;
-            currentVelocity_.angular.z = 0.25;
-            //currentVelocity_ = targetVelocity_;
-           //ros::Duration(30).sleep();
-
-        }
-
-         else if ( velocityChangeFlag_)
-         {
+            currentVelocity_.angular.z = 0.2;
+        } else if ( velocityChangeFlag_ ) {
             ROS_INFO("changing forward velocity");
             currentVelocity_.angular.z = 0.0;
             currentVelocity_.linear.x = targetVelocity_.linear.x;
-           // currentVelocity_ = targetVelocity_;
-        }
-        else {
+        } else {
             ROS_INFO("moving forward");
             currentVelocity_.angular.z = 0.0;
-            currentVelocity_.linear.x = 0.3 ;
-            //currentVelocity_ = targetVelocity_;
+            currentVelocity_.linear.x = 0.25;
         }
-
     }
 
     return currentVelocity_;
@@ -146,25 +127,26 @@ bool Exploration::motion
 
   if (stopMotion_) {
     ROS_INFO_STREAM("Robot Stopped by the user");
-  } else {
-    ROS_INFO_STREAM("Starting the robot movement");
   }
-
   return resp.response;
 }
 
 bool Exploration::velocityChange(pioneer::velocityChangeService::Request &req,
                    pioneer::velocityChangeService::Response &resp) {
-
+    // store the input velocity value
     targetVelocity_.linear.x = req.velocity;
-    velocityChangeFlag_ = true ;
+    // set the change flag to true
+    velocityChangeFlag_ = true;
+    // set response to  true
     resp.response = true;
-
     return resp.response;
-
 }
 
 
 bool Exploration::diagnosticTest() {
   return diagnostic_;
+}
+
+bool Exploration:: turnStatus() {
+    return turnFlag_;
 }
