@@ -33,81 +33,113 @@
 * @copyright MIT License (c) 2018 Indushekhar Singh
 */
 
+#ifndef INCLUDE_ROBOT_HPP_
+#define INCLUDE_ROBOT_HPP_
+
 #include <stdlib.h>
 #include <ros/ros.h>
-#include <Exploration.hpp>
-#include <RobotCamera.hpp>
+#include "Exploration.hpp"
+#include "RobotCamera.hpp"
 
+
+/**
+ * @brief Robot class calls the object of Exploration and RobotCamera class
+ *        and run the whole system.
+ */
 
 class Robot {
-
-
-  private:
-
- // RobotCamera Object
-
-  RobotCamera robotCamera_;
-
- // Exploration object
-
-  Exploration exploration_;
-
- // ROS Node handle
-
-  ros::NodeHandle n_;
-
-  // Velocity publisher
-
-  ros::Publisher velocityPub_;
-
- // Image topic subscriber
-
-  ros::Subscriber cameraSub_;
-
-  // Laser scanner subsrciber
-
-  ros::Subscriber laserScanSub_;
-
-  // Server for Image capture service
-
-  ros::ServiceServer captureImageServer_;
-
-  // Server for velocity change service
-
-  ros::ServiceServer velocityChangeServer_;
-
-  // Server for motion start stop service
-
-  ros::ServiceServer motionServer_;
-
-  // ROS timer for calling the start turn callback
-
-  ros::Timer startTurnTimer_;
-
-  // Ros timer for calling the stop turn callback
-
-  ros::Timer stopTurnTimer_;
-
-
-
  public:
   /**
-   * @brief Robot constructor
+   * @brief Robot class constructor
+   * @param  none
+   * @return none
    */
+
   Robot();
 
    /**
-   * @brief Robot destructor
+   * @brief Robot class destructor
+   * @param  none
+   * @return none
    */
 
   ~Robot();
 
   /**
-  * @brief : method to run the turtlebot system for exploration
+  * @brief : Method to run the turtlebot system for exploration
   * @param : None
   * @return : None
   */
 
   void run();
 
+
+ private:
+  /**
+  * @brief RobotCamera Object
+  */
+
+  RobotCamera robotCamera_;
+
+ /**
+  * @brief Exploration object
+  */
+
+  Exploration exploration_;
+
+ /**
+ * @brief ROS Node handle
+ */
+
+  ros::NodeHandle n_;
+
+  /**
+  * @brief Velocity publisher
+  */
+
+  ros::Publisher velocityPub_;
+
+  /**
+   * @brief Image topic subscriber
+   */
+  ros::Subscriber cameraSub_;
+
+  /**
+  * @brief Laser scanner subsrciber
+  */
+
+  ros::Subscriber laserScanSub_;
+
+  /**
+  * @brief  Server for Image capture service
+  */
+
+  ros::ServiceServer captureImageServer_;
+
+  /**
+  * @brief Server for velocity change service
+  */
+
+  ros::ServiceServer velocityChangeServer_;
+
+  /**
+  * @brief Server for motion start stop service
+  */
+
+  ros::ServiceServer motionServer_;
+
+  /**
+  * @brief ROS timer for calling the start turn callback
+  */
+
+  ros::Timer startTurnTimer_;
+
+  /**
+  * @brief  Ros timer for calling the stop turn callback
+  */
+
+  ros::Timer stopTurnTimer_;
 };
+
+
+#endif  // INCLUDE_ROBOT_HPP_
