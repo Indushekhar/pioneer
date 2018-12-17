@@ -31,6 +31,13 @@ the occupancy map which can be used for indoor navigation purposes.
 I am Indushekhar Singh. I am currently pursing Masters in Robotics at University of Maryland - College Park. I hold a Bachelors degree in Electrial & Electronics Engineering from, NIT Jamshedpur India. Along with that I brings 3 years of work experience in the area of Industrial Automation. I am also comfortable working in MATLAB and Python. I have done few projects in these two languages too.
 
 
+## Sample output 
+
+The 2D map created from the system is shown below :
+
+
+ ![Test Image 2](https://github.com/Indushekhar/pioneer/blob/master/results/map.jpg)
+
 ## Presentation 
 
 Presentation slides can be found here : 
@@ -136,7 +143,7 @@ $ roslaunch pioneer pioneer.launch
 ```
 The command given above will spwan the robot in a custom gazebo world and launch the rviz plugin. It will also start gmapping node which will be used to map the environment.
 
-Now robot will start moving the gazebo simulation.
+Now robot will start moving in the gazebo simulation.
 
 ### Running the demo with image_view
 
@@ -246,7 +253,7 @@ $ rostest pioneer pioneer_test.launch
 
 ## Recording bag files
 
-The data publsihed during the simulation can be recoreded in a bag file using the launch file by running the following command :
+The data publsihed during the simulation can be recoreded in a bag file using the launch file by running the following command:
 
 ```
 <home>$ roslaunch pioneer pioneer_image_view.launch record:=true
@@ -268,6 +275,22 @@ $ rosbag info pioneer.bag
 
 ```
 
+To replay the bag file, first run rosmaster from a terminal:
+
+```
+roscore
+
+```
+Now, from the results folder run the following command in a new terminal:
+
+```
+cd ~/catkin_ws/
+source devel/setup.bash
+cd src/pioneer/results
+rosbag play pioneer.bag
+
+```
+
 ## Solo Iterative Process and Sprint Planning
 
 While developing this module SIP process was followed. The link to the SIP sheet for this module is here.
@@ -279,6 +302,19 @@ Sprint planning notes can be found here.
 
 https://docs.google.com/document/d/1AY8NstnOtWDZ6wul_0_c_aTAbeUBaYTrImGRCwSZni4/edit?usp=sharing
 
+
+## Documentation
+
+
+The documentation for this project can be found at the path docs/html/index.html. The documentation for this project is created using doxygen-gui. To generate the documentation again, please execute the commands given below:
+
+```
+$ sudo apt-get install doxygen 
+$ sudo apt-get install doxygen-gui
+$ doxywizard
+
+```
+The last command opens up the GUI window of doxygen. First select a dummy folder for doxygen to run from. After that, complete the details as required like name, synopsis, and version of the project. Select this repository as source directory and select a destination directory as well. Please make sure you check scan recursively option in order to generate the complete documentation. Once doxygen runs successfully, navigate to your destination directory, go to html folder and open index.html file.
 
 ## License
 
