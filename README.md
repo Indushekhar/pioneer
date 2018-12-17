@@ -316,6 +316,13 @@ $ doxywizard
 ```
 The last command opens up the GUI window of doxygen. First select a dummy folder for doxygen to run from. After that, complete the details as required like name, synopsis, and version of the project. Select this repository as source directory and select a destination directory as well. Please make sure you check scan recursively option in order to generate the complete documentation. Once doxygen runs successfully, navigate to your destination directory, go to html folder and open index.html file.
 
+## Known Issues
+
+1. The code coverage is not 100%.
+
+2. Though the system works fine with the map chosen here for demo, but in case of larger map it might be ineffcient to use this package.
+   
+
 ## License
 
 MIT License
