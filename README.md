@@ -31,6 +31,14 @@ the occupancy map which can be used for indoor navigation purposes.
 I am Indushekhar Singh. I am currently pursing Masters in Robotics at University of Maryland - College Park. I hold a Bachelors degree in Electrial & Electronics Engineering from, NIT Jamshedpur India. Along with that I brings 3 years of work experience in the area of Industrial Automation. I am also comfortable working in MATLAB and Python. I have done few projects in these two languages too.
 
 
+## Presentation 
+
+Presentation slides can be found here : 
+[link](https://docs.google.com/presentation/d/1i1OtTYiq-vU1j2jFT9TYRwO_zqju3rAUdaMAnnEWUF8/edit#slide=id.p)
+
+Presentation video can be seen here :
+[video link](https://www.youtube.com/watch?v=RE3-FI6Z5AU&feature=youtu.be)
+
 ## Dependencies
 
 To run the program you need to have the following dependencies on your system:
@@ -233,6 +241,30 @@ It can also be run by using launch file :
 
 ```
 $ rostest pioneer pioneer_test.launch
+
+```
+
+## Recording bag files
+
+The data publsihed during the simulation can be recoreded in a bag file using the launch file by running the following command :
+
+```
+<home>$ roslaunch pioneer pioneer_image_view.launch record:=true
+
+```
+
+This will record data for 45 seconds of all the topic except /camera/* topics and save a bag file in the results folder of the package.
+
+
+## Playing back bag file
+
+To inspect the bag file, In a new terminal: 
+
+```
+$ cd ~/catkin_ws/
+$ source devel/setup.bash
+$ cd src/pioneer/results
+$ rosbag info pioneer.bag
 
 ```
 

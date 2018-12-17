@@ -94,7 +94,7 @@ geometry_msgs::Twist  Exploration::explore() {
 
     // start if stopMotion_ is true
     if ( stopMotion_ == false )  {
-        if (collisionFlag_ && ~turnFlag_) {
+        if (collisionFlag_ ) {
             ROS_INFO("Obstacle Detected");
             std::random_device rand_;
             std::mt19937 rng(rand_());
@@ -117,7 +117,6 @@ geometry_msgs::Twist  Exploration::explore() {
             currentVelocity_.linear.x = 0.3;
         }
     }
-
     return currentVelocity_;
 }
 
