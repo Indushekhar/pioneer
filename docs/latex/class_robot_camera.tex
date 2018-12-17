@@ -1,0 +1,137 @@
+\hypertarget{class_robot_camera}{}\section{Robot\+Camera Class Reference}
+\label{class_robot_camera}\index{Robot\+Camera@{Robot\+Camera}}
+
+
+\hyperlink{class_robot_camera}{Robot\+Camera} class capture image using capture\+Image service.  
+
+
+
+
+{\ttfamily \#include $<$Robot\+Camera.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_robot_camera_aa32b645d4fe1d6fc7a550166a3878536}{Robot\+Camera} ()
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{class_robot_camera}{Robot\+Camera} class. \end{DoxyCompactList}\item 
+\hyperlink{class_robot_camera_ab7ee19c6d8348c8b54dd50aaebcf9b48}{$\sim$\+Robot\+Camera} ()
+\begin{DoxyCompactList}\small\item\em Destructor of \hyperlink{class_robot_camera}{Robot\+Camera} class. \end{DoxyCompactList}\item 
+bool \hyperlink{class_robot_camera_afcdd096a861e94fa31cf566d77dac8e9}{capture\+Image} (pioneer\+::capture\+Image\+Service\+::\+Request \&req, pioneer\+::capture\+Image\+Service\+::\+Response \&resp)
+\begin{DoxyCompactList}\small\item\em callback back function for capture\+Image service \end{DoxyCompactList}\item 
+void \hyperlink{class_robot_camera_ab9dcbfebcd940cc058f14c753d084702}{robot\+Camera\+Callback} (const sensor\+\_\+msgs\+::\+Image msg)
+\begin{DoxyCompactList}\small\item\em callback function for the camera subscriber saves an image locally if take image flag is true \end{DoxyCompactList}\item 
+bool \hyperlink{class_robot_camera_aaec15fb8711b5540f5ef488fe88dea61}{diagnostic\+Test} ()
+\begin{DoxyCompactList}\small\item\em Gives the diagnostic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_robot_camera}{Robot\+Camera} class capture image using capture\+Image service. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Robot\+Camera@{Robot\+Camera}!Robot\+Camera@{Robot\+Camera}}
+\index{Robot\+Camera@{Robot\+Camera}!Robot\+Camera@{Robot\+Camera}}
+\subsubsection[{\texorpdfstring{Robot\+Camera()}{RobotCamera()}}]{\setlength{\rightskip}{0pt plus 5cm}Robot\+Camera\+::\+Robot\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_robot_camera_aa32b645d4fe1d6fc7a550166a3878536}{}\label{class_robot_camera_aa32b645d4fe1d6fc7a550166a3878536}
+
+
+Constructor of \hyperlink{class_robot_camera}{Robot\+Camera} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Robot\+Camera@{Robot\+Camera}!````~Robot\+Camera@{$\sim$\+Robot\+Camera}}
+\index{````~Robot\+Camera@{$\sim$\+Robot\+Camera}!Robot\+Camera@{Robot\+Camera}}
+\subsubsection[{\texorpdfstring{$\sim$\+Robot\+Camera()}{~RobotCamera()}}]{\setlength{\rightskip}{0pt plus 5cm}Robot\+Camera\+::$\sim$\+Robot\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_robot_camera_ab7ee19c6d8348c8b54dd50aaebcf9b48}{}\label{class_robot_camera_ab7ee19c6d8348c8b54dd50aaebcf9b48}
+
+
+Destructor of \hyperlink{class_robot_camera}{Robot\+Camera} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Robot\+Camera@{Robot\+Camera}!capture\+Image@{capture\+Image}}
+\index{capture\+Image@{capture\+Image}!Robot\+Camera@{Robot\+Camera}}
+\subsubsection[{\texorpdfstring{capture\+Image(pioneer\+::capture\+Image\+Service\+::\+Request \&req, pioneer\+::capture\+Image\+Service\+::\+Response \&resp)}{captureImage(pioneer::captureImageService::Request &req, pioneer::captureImageService::Response &resp)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Robot\+Camera\+::capture\+Image (
+\begin{DoxyParamCaption}
+\item[{pioneer\+::capture\+Image\+Service\+::\+Request \&}]{req, }
+\item[{pioneer\+::capture\+Image\+Service\+::\+Response \&}]{resp}
+\end{DoxyParamCaption}
+)}\hypertarget{class_robot_camera_afcdd096a861e94fa31cf566d77dac8e9}{}\label{class_robot_camera_afcdd096a861e94fa31cf566d77dac8e9}
+
+
+callback back function for capture\+Image service 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&req} & is the request sent by the client \\
+\hline
+{\em \&resp} & is the response sent by the server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool status of service call 
+\end{DoxyReturn}
+\index{Robot\+Camera@{Robot\+Camera}!diagnostic\+Test@{diagnostic\+Test}}
+\index{diagnostic\+Test@{diagnostic\+Test}!Robot\+Camera@{Robot\+Camera}}
+\subsubsection[{\texorpdfstring{diagnostic\+Test()}{diagnosticTest()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Robot\+Camera\+::diagnostic\+Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_robot_camera_aaec15fb8711b5540f5ef488fe88dea61}{}\label{class_robot_camera_aaec15fb8711b5540f5ef488fe88dea61}
+
+
+Gives the diagnostic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool Gives self diagnostic boolean variables 
+\end{DoxyReturn}
+\index{Robot\+Camera@{Robot\+Camera}!robot\+Camera\+Callback@{robot\+Camera\+Callback}}
+\index{robot\+Camera\+Callback@{robot\+Camera\+Callback}!Robot\+Camera@{Robot\+Camera}}
+\subsubsection[{\texorpdfstring{robot\+Camera\+Callback(const sensor\+\_\+msgs\+::\+Image msg)}{robotCameraCallback(const sensor_msgs::Image msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+Camera\+::robot\+Camera\+Callback (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Image}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{class_robot_camera_ab9dcbfebcd940cc058f14c753d084702}{}\label{class_robot_camera_ab9dcbfebcd940cc058f14c753d084702}
+
+
+callback function for the camera subscriber saves an image locally if take image flag is true 
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & sensor\+\_\+msgs\+::\+Image\+Const\+Ptr A constant image pointer of what robot is seeing \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/bala/pioneer/include/\hyperlink{_robot_camera_8hpp}{Robot\+Camera.\+hpp}\item 
+/home/bala/pioneer/src/\hyperlink{_robot_camera_8cpp}{Robot\+Camera.\+cpp}\end{DoxyCompactItemize}

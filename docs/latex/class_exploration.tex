@@ -1,0 +1,266 @@
+\hypertarget{class_exploration}{}\section{Exploration Class Reference}
+\label{class_exploration}\index{Exploration@{Exploration}}
+
+
+\hyperlink{class_exploration}{Exploration} class read the laser scanner data and move the robot in an unknown area with obstacle avoidance. Includes velocity change and motion service to change velocity or start/stop the robot.  
+
+
+
+
+{\ttfamily \#include $<$Exploration.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_exploration_a517cb54e02d8f50ce339c7873fa1c3ad}{Exploration} ()
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{class_exploration}{Exploration} class. \end{DoxyCompactList}\item 
+\hyperlink{class_exploration_af96bdb6781a4f8fd2cbd859b1d9caeff}{$\sim$\+Exploration} ()
+\begin{DoxyCompactList}\small\item\em Destructor of \hyperlink{class_exploration}{Exploration} class. \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Twist \hyperlink{class_exploration_a5731c746e60f32a51a2ae1d1f7863f89}{explore} ()
+\begin{DoxyCompactList}\small\item\em Generate input velocity to run the robot. \end{DoxyCompactList}\item 
+void \hyperlink{class_exploration_a3e5225a667c5522ed5f2eb69c9a9b937}{check\+Obstacle} (const sensor\+\_\+msgs\+::\+Laser\+Scan msg)
+\begin{DoxyCompactList}\small\item\em check the distance of obstacle from robot using laser scan \end{DoxyCompactList}\item 
+bool \hyperlink{class_exploration_a127a714f733627f1a7d4f8554961ea00}{check\+Collision} ()
+\begin{DoxyCompactList}\small\item\em method to return the collision flag \end{DoxyCompactList}\item 
+bool \hyperlink{class_exploration_ae25024189aa54ae2be10877c22c0142c}{velocity\+Change} (pioneer\+::velocity\+Change\+Service\+::\+Request \&req, pioneer\+::velocity\+Change\+Service\+::\+Response \&resp)
+\begin{DoxyCompactList}\small\item\em callback back function for velocity\+Change service \end{DoxyCompactList}\item 
+bool \hyperlink{class_exploration_adc86a3300d43090957adcdd3250c73fe}{motion} (pioneer\+::motion\+Service\+::\+Request \&req, pioneer\+::motion\+Service\+::\+Response \&resp)
+\begin{DoxyCompactList}\small\item\em callback back function for motion service \end{DoxyCompactList}\item 
+void \hyperlink{class_exploration_a4311b2bb1ccc4aec5c800c9695e8974d}{start\+Turn\+Timer} (const ros\+::\+Timer\+Event \&start\+Turn)
+\begin{DoxyCompactList}\small\item\em callback function for the start\+Turn timer \end{DoxyCompactList}\item 
+void \hyperlink{class_exploration_a04d03dc4617421fc9a7896b3487005f4}{stop\+Turn\+Timer} (const ros\+::\+Timer\+Event \&stop\+Turn)
+\begin{DoxyCompactList}\small\item\em callback function for the stop\+Turn timer \end{DoxyCompactList}\item 
+bool \hyperlink{class_exploration_afceabf3b550d89c9dc3a6d55f986e27e}{turn\+Status} ()
+\begin{DoxyCompactList}\small\item\em returns the turn\+Flag\+\_\+ \end{DoxyCompactList}\item 
+bool \hyperlink{class_exploration_a038a9972b8de7a912ff8421ea71471c1}{diagnostic\+Test} ()
+\begin{DoxyCompactList}\small\item\em Gives the diagnostic. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_exploration}{Exploration} class read the laser scanner data and move the robot in an unknown area with obstacle avoidance. Includes velocity change and motion service to change velocity or start/stop the robot. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Exploration@{Exploration}!Exploration@{Exploration}}
+\index{Exploration@{Exploration}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{Exploration()}{Exploration()}}]{\setlength{\rightskip}{0pt plus 5cm}Exploration\+::\+Exploration (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_a517cb54e02d8f50ce339c7873fa1c3ad}{}\label{class_exploration_a517cb54e02d8f50ce339c7873fa1c3ad}
+
+
+Constructor of \hyperlink{class_exploration}{Exploration} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Exploration@{Exploration}!````~Exploration@{$\sim$\+Exploration}}
+\index{````~Exploration@{$\sim$\+Exploration}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{$\sim$\+Exploration()}{~Exploration()}}]{\setlength{\rightskip}{0pt plus 5cm}Exploration\+::$\sim$\+Exploration (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_af96bdb6781a4f8fd2cbd859b1d9caeff}{}\label{class_exploration_af96bdb6781a4f8fd2cbd859b1d9caeff}
+
+
+Destructor of \hyperlink{class_exploration}{Exploration} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Exploration@{Exploration}!check\+Collision@{check\+Collision}}
+\index{check\+Collision@{check\+Collision}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{check\+Collision()}{checkCollision()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Exploration\+::check\+Collision (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_a127a714f733627f1a7d4f8554961ea00}{}\label{class_exploration_a127a714f733627f1a7d4f8554961ea00}
+
+
+method to return the collision flag 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool collision\+F\+Lag\+\_\+ 
+\end{DoxyReturn}
+\index{Exploration@{Exploration}!check\+Obstacle@{check\+Obstacle}}
+\index{check\+Obstacle@{check\+Obstacle}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{check\+Obstacle(const sensor\+\_\+msgs\+::\+Laser\+Scan msg)}{checkObstacle(const sensor_msgs::LaserScan msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Exploration\+::check\+Obstacle (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_a3e5225a667c5522ed5f2eb69c9a9b937}{}\label{class_exploration_a3e5225a667c5522ed5f2eb69c9a9b937}
+
+
+check the distance of obstacle from robot using laser scan 
+
+
+\begin{DoxyParams}{Parameters}
+{\em const} & sensor\+\_\+msgs\+::\+Laser\+Scan laser scan mmessage \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Exploration@{Exploration}!diagnostic\+Test@{diagnostic\+Test}}
+\index{diagnostic\+Test@{diagnostic\+Test}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{diagnostic\+Test()}{diagnosticTest()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Exploration\+::diagnostic\+Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_a038a9972b8de7a912ff8421ea71471c1}{}\label{class_exploration_a038a9972b8de7a912ff8421ea71471c1}
+
+
+Gives the diagnostic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool Gives self diagnostic boolean variables 
+\end{DoxyReturn}
+\index{Exploration@{Exploration}!explore@{explore}}
+\index{explore@{explore}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{explore()}{explore()}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Twist Exploration\+::explore (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_a5731c746e60f32a51a2ae1d1f7863f89}{}\label{class_exploration_a5731c746e60f32a51a2ae1d1f7863f89}
+
+
+Generate input velocity to run the robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+geometry\+\_\+msgs\+::\+Twist input velocity at which robot will move 
+\end{DoxyReturn}
+\index{Exploration@{Exploration}!motion@{motion}}
+\index{motion@{motion}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{motion(pioneer\+::motion\+Service\+::\+Request \&req, pioneer\+::motion\+Service\+::\+Response \&resp)}{motion(pioneer::motionService::Request &req, pioneer::motionService::Response &resp)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Exploration\+::motion (
+\begin{DoxyParamCaption}
+\item[{pioneer\+::motion\+Service\+::\+Request \&}]{req, }
+\item[{pioneer\+::motion\+Service\+::\+Response \&}]{resp}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_adc86a3300d43090957adcdd3250c73fe}{}\label{class_exploration_adc86a3300d43090957adcdd3250c73fe}
+
+
+callback back function for motion service 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&req} & is the request sent by the client \\
+\hline
+{\em \&resp} & is the response sent by the server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool status of service call 
+\end{DoxyReturn}
+\index{Exploration@{Exploration}!start\+Turn\+Timer@{start\+Turn\+Timer}}
+\index{start\+Turn\+Timer@{start\+Turn\+Timer}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{start\+Turn\+Timer(const ros\+::\+Timer\+Event \&start\+Turn)}{startTurnTimer(const ros::TimerEvent &startTurn)}}]{\setlength{\rightskip}{0pt plus 5cm}void Exploration\+::start\+Turn\+Timer (
+\begin{DoxyParamCaption}
+\item[{const ros\+::\+Timer\+Event \&}]{start\+Turn}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_a4311b2bb1ccc4aec5c800c9695e8974d}{}\label{class_exploration_a4311b2bb1ccc4aec5c800c9695e8974d}
+
+
+callback function for the start\+Turn timer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ros\+::\+Timer\+Event} & count the duration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Exploration@{Exploration}!stop\+Turn\+Timer@{stop\+Turn\+Timer}}
+\index{stop\+Turn\+Timer@{stop\+Turn\+Timer}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{stop\+Turn\+Timer(const ros\+::\+Timer\+Event \&stop\+Turn)}{stopTurnTimer(const ros::TimerEvent &stopTurn)}}]{\setlength{\rightskip}{0pt plus 5cm}void Exploration\+::stop\+Turn\+Timer (
+\begin{DoxyParamCaption}
+\item[{const ros\+::\+Timer\+Event \&}]{stop\+Turn}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_a04d03dc4617421fc9a7896b3487005f4}{}\label{class_exploration_a04d03dc4617421fc9a7896b3487005f4}
+
+
+callback function for the stop\+Turn timer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ros\+::\+Timer\+Event} & count the duration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Exploration@{Exploration}!turn\+Status@{turn\+Status}}
+\index{turn\+Status@{turn\+Status}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{turn\+Status()}{turnStatus()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Exploration\+::turn\+Status (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_afceabf3b550d89c9dc3a6d55f986e27e}{}\label{class_exploration_afceabf3b550d89c9dc3a6d55f986e27e}
+
+
+returns the turn\+Flag\+\_\+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool Gives turn\+Flag\+\_\+ 
+\end{DoxyReturn}
+\index{Exploration@{Exploration}!velocity\+Change@{velocity\+Change}}
+\index{velocity\+Change@{velocity\+Change}!Exploration@{Exploration}}
+\subsubsection[{\texorpdfstring{velocity\+Change(pioneer\+::velocity\+Change\+Service\+::\+Request \&req, pioneer\+::velocity\+Change\+Service\+::\+Response \&resp)}{velocityChange(pioneer::velocityChangeService::Request &req, pioneer::velocityChangeService::Response &resp)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Exploration\+::velocity\+Change (
+\begin{DoxyParamCaption}
+\item[{pioneer\+::velocity\+Change\+Service\+::\+Request \&}]{req, }
+\item[{pioneer\+::velocity\+Change\+Service\+::\+Response \&}]{resp}
+\end{DoxyParamCaption}
+)}\hypertarget{class_exploration_ae25024189aa54ae2be10877c22c0142c}{}\label{class_exploration_ae25024189aa54ae2be10877c22c0142c}
+
+
+callback back function for velocity\+Change service 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \&req} & is the request sent by the client \\
+\hline
+{\em \&resp} & is the response sent by the server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool status of service call 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/bala/pioneer/include/\hyperlink{_exploration_8hpp}{Exploration.\+hpp}\item 
+/home/bala/pioneer/src/\hyperlink{_exploration_8cpp}{Exploration.\+cpp}\end{DoxyCompactItemize}
